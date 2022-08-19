@@ -1,2 +1,2 @@
-# **MindRace
+# **MindRace**
 Can you focus?
