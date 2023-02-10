@@ -1,0 +1,77 @@
+void BumperProtection2(){
+  UpdateTime2();
+  if(bumperFlag == 1){
+    resetRightEncoderCnt();
+    resetLeftEncoderCnt();
+    setMotorDirection(BOTH_MOTORS, MOTOR_DIR_BACKWARD);
+    hit = 1;
+    while(hit == 1){
+      RightEncoder = getEncoderRightCnt();
+      UpdateTime2();
+      Mindflex2();
+      if(RightEncoder < backwards && display == 0){
+        Straight2();
+        DisplayProtection();
+      }
+      else{
+        resetRightEncoderCnt();
+        display = 0;
+        hit = 2;
+      }
+    }
+    while(hit == 2){
+      RightEncoder = getEncoderRightCnt();
+      UpdateTime2();
+      Mindflex2();
+      if(RightEncoder < randNum){
+        setMotorDirection(RIGHT_MOTOR, MOTOR_DIR_FORWARD); //do i need to initialize both forward before doing this line?
+        setMotorDirection(LEFT_MOTOR, MOTOR_DIR_BACKWARD);
+        setMotorSpeed(BOTH_MOTORS, motorSpeed); 
+      }
+      else{
+        hit = 0;
+        bumperFlag = 0;
+        resetRightEncoderCnt();
+        resetLeftEncoderCnt();
+        setMotorDirection(BOTH_MOTORS, MOTOR_DIR_FORWARD);
+      }
+    }
+  }
+  else if(bumperFlag == 2){
+    resetRightEncoderCnt();
+    resetLeftEncoderCnt();
+    setMotorDirection(BOTH_MOTORS, MOTOR_DIR_BACKWARD);
+    hit = 1;
+    while(hit == 1){
+      LeftEncoder = getEncoderLeftCnt();
+      UpdateTime2();
+      Mindflex2();
+      if(LeftEncoder < backwards && display == 0){
+        Straight2();
+        DisplayProtection();
+      }
+      else{
+        resetLeftEncoderCnt();
+        display = 0;
+        hit = 2;
+      }
+    }
+    while(hit == 2){
+      LeftEncoder = getEncoderLeftCnt();
+      UpdateTime2();
+      Mindflex2();
+      if(LeftEncoder < randNum){
+        setMotorDirection(RIGHT_MOTOR, MOTOR_DIR_BACKWARD);
+        setMotorDirection(LEFT_MOTOR, MOTOR_DIR_FORWARD);
+        setMotorSpeed(BOTH_MOTORS, motorSpeed);
+      }
+      else{
+        hit = 0;
+        bumperFlag = 0;
+        resetRightEncoderCnt();
+        resetLeftEncoderCnt();
+        setMotorDirection(BOTH_MOTORS, MOTOR_DIR_FORWARD);
+      }
+    }
+  }
+}
