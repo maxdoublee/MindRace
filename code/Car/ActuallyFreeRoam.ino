@@ -4,7 +4,7 @@ void actuallyFreeRoam(){
     UpdateTime1(); 
     Mindflex1();
     Straight_reset1();
-    Straight1();//
+    Straight1();
     OutofBounds1();
     BumperProtection1();
     Off();
