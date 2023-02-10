@@ -1,0 +1,26 @@
+void CalStraight(){
+  LeftEncoder = getEncoderLeftCnt();
+  RightEncoder = getEncoderRightCnt();
+  if(RightEncoder - LeftEncoder < encoderLimit && RightEncoder - LeftEncoder >= encoderMin){
+    resumeMotor(BOTH_MOTORS);
+    setMotorSpeed(BOTH_MOTORS, calSpeed);
+  }
+  else if(RightEncoder - LeftEncoder >= encoderLimit){
+    pauseMotor(RIGHT_MOTOR);
+    setMotorSpeed(LEFT_MOTOR, calSpeed);
+  }
+  else if(LeftEncoder - RightEncoder < encoderLimit && LeftEncoder - RightEncoder >= encoderMin){
+    resumeMotor(BOTH_MOTORS);
+    setMotorSpeed(BOTH_MOTORS, calSpeed);
+  }
+  else if(LeftEncoder - RightEncoder >= encoderLimit){
+    pauseMotor(LEFT_MOTOR);
+    setMotorSpeed(RIGHT_MOTOR, calSpeed);
+  }
+  else if(LeftEncoder - RightEncoder >= encoderNotWorking){
+    disableMotor(BOTH_MOTORS);
+  }
+  else if(RightEncoder - LeftEncoder >= encoderNotWorking){
+    disableMotor(BOTH_MOTORS);
+  }
+}
