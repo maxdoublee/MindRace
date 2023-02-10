@@ -1,0 +1,12 @@
+void CalLEDs(){
+  digitalWrite(LEFTREDLED, HIGH);
+  digitalWrite(RIGHTREDLED, HIGH);
+  digitalWrite(RIGHTGREENLED, HIGH);
+  digitalWrite(LEFTGREENLED, HIGH);
+  delay(500);
+  digitalWrite(LEFTREDLED, LOW);
+  digitalWrite(RIGHTREDLED, LOW);
+  digitalWrite(RIGHTGREENLED, LOW);
+  digitalWrite(LEFTGREENLED, LOW);
+  delay(500);
+}
